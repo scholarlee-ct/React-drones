@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
+import { Home } from './components';
 import reportWebVitals from './reportWebVitals';
+import './styles.css'
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Home title='Operators-61 React Project'/>
   </React.StrictMode>,
   document.getElementById('root')
 );
