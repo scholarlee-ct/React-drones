@@ -1,12 +1,35 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Home } from './components';
+import { Home, Dashboard, SignIn } from './components';
 import reportWebVitals from './reportWebVitals';
 import './styles.css'
 
+//import from react routing
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+
+import { Provider } from 'react-redux';
+import { store } from './redux/store';
+
+import { FirebaseAppProvider, AuthCheck } from 'reactfire';
+import 'firebase/auth';
+import { firebaseConfig } from './firebaseConfig';
+
+
 ReactDOM.render(
   <React.StrictMode>
-    <Home title='Operators-61 React Project'/>
+    <FirebaseAppProvider firebaseConfig={firebaseConfig}>
+      <Provider store = { store }> 
+        <Router>
+          <Switch>
+            <Route exact path='/'>
+              <Home title={ 'Drones Inventory'}/>
+            </Route>
+            <Route path="/dashboard" component={Dashboard}></Route>
+            <Route path='/signin' component={SignIn} ></Route>
+          </Switch>
+        </Router>
+      </Provider>
+    </FirebaseAppProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
